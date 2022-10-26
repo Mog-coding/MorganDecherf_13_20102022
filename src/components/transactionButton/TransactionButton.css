@@ -8,10 +8,10 @@
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
-  }
+}
 
-  @media (min-width: 720px) {
+@media (min-width: 720px) {
     .transaction-button {
-      width: 200px;
+        width: 200px;
     }
-  }
+}
