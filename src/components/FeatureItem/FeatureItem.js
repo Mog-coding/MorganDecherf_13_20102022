@@ -1,3 +1,5 @@
+import './FeatureItem.css';
+
 export default function CardHome({ featureTitle, featureText, featureIcon }) {
     return (
         <>
