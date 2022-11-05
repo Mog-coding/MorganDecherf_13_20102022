@@ -1,5 +1,5 @@
 import './HomePage.css';
-import CardHome from '../../components/FeatureItem/FeatureItem';
+import FeatureItem from '../../components/FeatureItem/FeatureItem';
 import chatIcon from '../../assets/pictures/icon-chat.png';
 import moneyIcon from '../../assets/pictures/icon-money.png';
 import securityIcon from '../../assets/pictures/icon-security.png';
@@ -42,7 +42,7 @@ export default function HomePage() {
                     <h2 className="sr-only">Features</h2>
                     {featureData.map(({title, text, icon }, index) => {
                         return (
-                            <CardHome
+                            <FeatureItem
                                 featureTitle={title}
                                 featureText={text}
                                 featureIcon={icon}

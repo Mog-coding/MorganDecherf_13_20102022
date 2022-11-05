@@ -1,6 +1,6 @@
 import './FeatureItem.css';
 
-export default function CardHome({ featureTitle, featureText, featureIcon }) {
+export default function FeatureItem({ featureTitle, featureText, featureIcon }) {
     return (
         <>
             <div className="feature-item">
