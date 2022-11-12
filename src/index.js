@@ -8,7 +8,12 @@ import SignInPage from './pages/SignInPage/SignInPage';
 import UserPage from './pages/UserPage/UserPage';
 import Footer from './components/Footer/Footer';
 import { Provider } from 'react-redux';
-import store from "./app/store"
+import { createStore } from 'redux';
+import { combinReducer } from './reducers/combineReducers';
+
+
+const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const store = createStore(combinReducer, reduxDevtools);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './SignInPage.css';
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { setTokenData } from '../../feature/tokenSlice';
+import { loggin } from '../../actions/authentActions';
 
 export default function SignInPage() {
     const dispatch = useDispatch();
@@ -11,8 +11,6 @@ export default function SignInPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('handleUser', userName);
-        console.log('handlePass', password);
         axios
         .post("http://localhost:3001/api/v1/user/login", {
             email: userName,
@@ -20,8 +18,7 @@ export default function SignInPage() {
         })
         .then((resp) => { 
             console.log("resp", resp);
-            console.log("token", resp.data.body )
-            dispatch(setTokenData(resp.data.body))
+            dispatch(loggin(resp.data.body))
     })
     };
 
