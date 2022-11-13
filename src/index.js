@@ -8,17 +8,16 @@ import SignInPage from './pages/SignInPage/SignInPage';
 import UserPage from './pages/UserPage/UserPage';
 import Footer from './components/Footer/Footer';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { combinReducer } from './reducers/combineReducers';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { rootReducer } from './reducers/combineReducers';
+import thunk from 'redux-thunk';
 
-
-const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-const store = createStore(combinReducer, reduxDevtools);
+const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
-        <React.StrictMode>
+        {/* <React.StrictMode> */}
             <Router>
                 <Header />
                 <Routes>
@@ -28,6 +27,6 @@ root.render(
                 </Routes>
                 <Footer />
             </Router>
-        </React.StrictMode>
+        {/* </React.StrictMode> */}
     </Provider>
 );

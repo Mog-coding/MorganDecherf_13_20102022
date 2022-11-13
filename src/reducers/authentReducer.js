@@ -4,7 +4,7 @@ const initState = {
 
 export const authentReducer = (state = initState, action) => {
     switch(action.type){
-        case "LOGGIN":
+        case "LOGGED":
             console.log("action", action)
             return {...state, token: action.payload}
         default: 

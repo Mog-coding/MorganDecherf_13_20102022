@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import './SignInPage.css';
-import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { loggin } from '../../actions/authentActions';
+import {fetchPosts} from './../../actions/authentActions'
 
 export default function SignInPage() {
     const dispatch = useDispatch();
@@ -11,21 +10,12 @@ export default function SignInPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-        .post("http://localhost:3001/api/v1/user/login", {
-            email: userName,
-            password: password
-        })
-        .then((resp) => { 
-            console.log("resp", resp);
-            dispatch(loggin(resp.data.body))
-    })
+        dispatch(fetchPosts({email: userName, password: password}))
     };
 
     return (
         <>
             <main className="mainSign bg-dark">
-                {console.log('render')}
                 <section className="sign-in-content">
                     <i className="fa fa-user-circle sign-in-icon"></i>
                     <h1>Sign In</h1>
