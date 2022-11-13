@@ -3,7 +3,7 @@ import { authentReducer } from "./authentReducer";
 import { dataUserReducer } from "./dataUserReducer";
 
 
-export const combinReducer = combineReducers({
+export const rootReducer = combineReducers({
     auth: authentReducer,
     userData: dataUserReducer
 })
