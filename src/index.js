@@ -9,7 +9,7 @@ import UserPage from './pages/UserPage/UserPage';
 import Footer from './components/Footer/Footer';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
-import { rootReducer } from './reducers/combineReducers';
+import { rootReducer } from './reducers/rootReducers';
 import thunk from 'redux-thunk';
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
