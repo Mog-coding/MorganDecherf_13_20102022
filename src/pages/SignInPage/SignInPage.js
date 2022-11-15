@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import './SignInPage.css';
-import { useDispatch } from 'react-redux';
-import {fetchPosts} from './../../actions/authentActions'
+import { useDispatch, useSelector } from 'react-redux';
+import {signIn} from './../../actions/authentActions'
+import { isConnected } from '../../selectors/authentSelectors';
+import { Navigate } from 'react-router-dom';
 
 export default function SignInPage() {
     const dispatch = useDispatch();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const userIsConnected = useSelector(isConnected)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(fetchPosts({email: userName, password: password}))
+        dispatch(signIn({email: userName, password: password}))
     };
+
+    if (userIsConnected) {
+        return <Navigate to="/user" />
+    }
 
     return (
         <>
