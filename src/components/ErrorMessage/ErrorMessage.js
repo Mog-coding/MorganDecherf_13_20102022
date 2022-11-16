@@ -12,7 +12,7 @@ export default function ErrorMessage() {
   
     return (
         <>
-        {isErrorMessage ? <div className="errorMessage">{isErrorMessage}</div> : <div></div>}
+        {isErrorMessage && <div className="errorMessage">{isErrorMessage}</div>}
         </>
     )
 }
