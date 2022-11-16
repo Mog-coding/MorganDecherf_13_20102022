@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { rootReducer } from './reducers/rootReducers';
 import thunk from 'redux-thunk';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
@@ -18,15 +19,19 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
         {/* <React.StrictMode> */}
-            <Router>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/sign" element={<SignInPage />} />
-                    <Route path="/user" element={<UserPage />} />
-                </Routes>
-                <Footer />
-            </Router>
+        <Router>
+            <Header />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/sign" element={<SignInPage />} />
+                <Route path="/user" element={
+                    <PrivateRoute>
+                        <UserPage />
+                    </PrivateRoute>
+                } />
+            </Routes>
+            <Footer />
+        </Router>
         {/* </React.StrictMode> */}
     </Provider>
 );
