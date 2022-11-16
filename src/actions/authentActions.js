@@ -1,21 +1,29 @@
 import axios from "axios";
 
-export const signIn = (logs) => { //1 avec thunk: autorisé à retourner une function
-    return async(dispatch) => {
-      const respJWT = await axios
-         .post("http://localhost:3001/api/v1/user/login", {
-             email: logs.email,
-             password: logs.password
-         })
-         console.log("thunk fetchPosts resp:", respJWT )
-        dispatch(signInSuccess(respJWT.data.body.token)) //dispatch manuel qd fetch fini: stocke resp ds store
-    } 
-}    
+export const signIn = (logs) => {
+    return async (dispatch) => {
+        try {
+            const respJWT = await axios({
+                method: 'post',
+                url: 'http://localhost:3001/api/v1/user/login',
+                data: {
+                    email: logs.email,
+                    password: logs.password
+                }
+            })
+            console.log("thunk signIn ok, resp:", respJWT)
+            dispatch(signInSuccess(respJWT.data.body.token))
+        } catch (error) {
+            console.log("signIn error mess:", error)
+            dispatch(signInError(error.response.data.message))
+        }
+    }
+}
 
- export const signInSuccess = (respJWT) => {
-     return { type: 'SIGN_IN_SUCCESS', payload: respJWT };
- };
+export const signInSuccess = (respJWT) => {
+    return { type: 'SIGN_IN_SUCCESS', payload: respJWT };
+};
 
- export const signInError = (respJWT) => {
-    return { type: 'SIGN_IN_Error', payload: respJWT };
+export const signInError = (errorMessage) => {
+    return { type: 'SIGN_IN_ERROR', payload: errorMessage };
 };

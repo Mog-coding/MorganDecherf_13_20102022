@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {signIn} from './../../actions/authentActions'
 import { isConnected } from '../../selectors/authentSelectors';
 import { Navigate } from 'react-router-dom';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 export default function SignInPage() {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function SignInPage() {
     if (userIsConnected) {
         return <Navigate to="/user" />
     }
-
+    
     return (
         <>
             <main className="mainSign bg-dark">
@@ -48,6 +49,7 @@ export default function SignInPage() {
                                 }}
                             />
                         </div>
+                        <ErrorMessage />
                         <div className="input-remember">
                             <label htmlFor="remember-me">Remember me</label>
                             <input type="checkbox" id="remember-me" />

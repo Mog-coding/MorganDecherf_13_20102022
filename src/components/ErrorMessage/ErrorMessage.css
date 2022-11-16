@@ -1,0 +1,10 @@
+.errorMessage{
+    color: red;
+    text-align: left;
+    margin-bottom: 13px;
+    font-weight: bold;
+}
+
+.outlineError{
+    outline: 2px red solid;
+}
