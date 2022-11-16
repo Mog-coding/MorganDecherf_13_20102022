@@ -10,7 +10,7 @@ export default function SignInPage() {
     const dispatch = useDispatch();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const userIsConnected = useSelector(isConnected)
+    const userIsConnected = useSelector(isConnected);
 
     const handleSubmit = (e) => {
         e.preventDefault();

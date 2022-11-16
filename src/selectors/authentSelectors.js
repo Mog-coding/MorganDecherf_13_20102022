@@ -1,0 +1,1 @@
+export const isConnected = (state) => Boolean(state.auth.token)
