@@ -12,6 +12,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { rootReducer } from './reducers/rootReducers';
 import thunk from 'redux-thunk';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import PublicRoute from './components/PublicRoute/PublicRoute';
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
@@ -23,7 +24,10 @@ root.render(
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/sign" element={<SignInPage />} />
+                <Route path="/sign" element={
+                    <PublicRoute>
+                        <SignInPage />
+                    </PublicRoute>} />
                 <Route path="/user" element={
                     <PrivateRoute>
                         <UserPage />
