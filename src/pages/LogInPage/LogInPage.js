@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import './SignInPage.css';
-import { useDispatch, useSelector } from 'react-redux';
-import {signIn} from './../../actions/authentActions'
+import './LogInPage.css';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../actions/authentActions';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-export default function SignInPage() {
+export default function LogInPage() {
     const dispatch = useDispatch();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(signIn({email: userName, password: password}))
+        dispatch(logIn({ email: userName, password: password }));
     };
-    
+
     return (
         <>
             <main className="mainSign bg-dark">
