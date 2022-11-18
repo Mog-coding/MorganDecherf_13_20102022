@@ -6,7 +6,7 @@ export default function PublicRoute({children}){
     const userIsConnected = useSelector(isConnected);
 
     if (userIsConnected) {
-        return <Navigate to="/user" />
+        return <Navigate to="/profile" />
     }
     return children;
 }
