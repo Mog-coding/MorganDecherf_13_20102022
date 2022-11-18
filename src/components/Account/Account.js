@@ -1,5 +1,5 @@
 import './Account.css';
-import TransactionButton from "../transactionButton/TransactionButton";
+import TransactionButton from '../transactionButton/TransactionButton';
 
 export default function Account({ title, amount, description }) {
     return (

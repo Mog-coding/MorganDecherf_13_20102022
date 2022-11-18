@@ -1,1 +1,1 @@
-export const isConnected = (state) => Boolean(state.auth.token)
+export const isConnected = (state) => Boolean(state.auth.token);

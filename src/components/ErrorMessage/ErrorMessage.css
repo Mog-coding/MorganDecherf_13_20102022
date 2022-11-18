@@ -1,11 +1,11 @@
-.errorMessage{
+.errorMessage {
     color: #c70707;
     text-align: left;
     margin-bottom: 13px;
     font-weight: bold;
 }
 
-.outlineError{
+.outlineError {
     outline: 2px solid #c70707;
     border-radius: 3px;
 }

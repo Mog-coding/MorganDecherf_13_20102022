@@ -1,7 +1,7 @@
 const initState = {
-    dataUser: []
-}
+    dataUser: [],
+};
 
 export const dataUserReducer = (state = initState, action) => {
-            return state
-}
+    return state;
+};

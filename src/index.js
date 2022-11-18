@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage/HomePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Header from './components/Header/Header';
-import SignInPage from './pages/SignInPage/SignInPage';
+import LogInPage from './pages/LogInPage/LogInPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Footer from './components/Footer/Footer';
 import { Provider } from 'react-redux';
@@ -26,7 +26,7 @@ root.render(
                 <Route path="/" element={<HomePage />} />
                 <Route path="/sign" element={
                     <PublicRoute>
-                        <SignInPage />
+                        <LogInPage />
                     </PublicRoute>} />
                 <Route path="/profile" element={
                     <PrivateRoute>
