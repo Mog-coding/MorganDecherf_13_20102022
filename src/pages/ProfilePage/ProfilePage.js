@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import Account from '../../components/Account/Account';
+import Profile from '../../components/Profile/Profile';
 import './ProfilePage.css';
 
 const dataAccount = [
@@ -22,38 +22,10 @@ const dataAccount = [
 
 export default function ProfilePage() {
 
-    const [isEdit, setIsEdit] = useState(false);
-    const [firstName, setFirstName] = useState("Tony");
-    const [lastName, setLastName] = useState("Jarvis");
-
-    const toggleEdit = (e) => {
-        setIsEdit(!isEdit);
-    }
-
     return (
         <>
             <main className="mainUser bg-dark">
-                <div className="header">
-                    {!isEdit ? <>
-                        <h1>
-                            Welcome back
-                            <br />
-                            {`${firstName} ${lastName}!`}
-                        </h1>
-                        <button className="edit-button"
-                            onClick={(e) => toggleEdit(e)}
-                        >Edit Name</button> </> :
-                        <>
-                            <h1>Welcome back</h1>
-                            <input type="text" placeholder={firstName} />
-                            <input type="text" placeholder={lastName} />
-                            <br />
-                            <button>Save</button>
-                            <button onClick={(e) => toggleEdit(e)}>Cancel</button>
-                        </>
-                    }
-                </div>
-
+                <Profile />
                 <h2 className="sr-only">Accounts</h2>
                 {dataAccount.map(({ title, amount, description }, index) => {
                     return <Account
