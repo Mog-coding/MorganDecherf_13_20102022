@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './LogInPage.css';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../actions/authentActions';
+import { logInThunk } from '../../actions/authentActions';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 export default function LogInPage() {
@@ -11,7 +11,7 @@ export default function LogInPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(logIn({ email: userName, password: password }));
+        dispatch(logInThunk({ email: userName, password: password }));
     };
 
     return (

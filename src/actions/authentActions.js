@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const logIn = (logs) => {
+export const logInThunk = (logs) => {
     return async (dispatch) => {
         try {
             const respJWT = await axios({
