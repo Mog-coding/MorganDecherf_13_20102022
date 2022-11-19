@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {updateName} from './../../actions/authentActions'
+import {updateNameThunk} from './../../actions/authentActions'
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -16,8 +16,7 @@ export default function Profile() {
     const saveEdit = () => {
         setFirstNameSaved(firstName);
         setLastNameSaved(lastName);
-        console.log('ici', firstNameSaved)
-        dispatch(updateName({"firstName": firstNameSaved, "lastName": lastNameSaved}))
+        dispatch(updateNameThunk({"firstName": firstName, "lastName": lastName}))
     };
 
     return (
