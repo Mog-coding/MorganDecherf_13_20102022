@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './LogInPage.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logInThunk } from '../../actions/authentActions';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 export default function LogInPage() {
     const dispatch = useDispatch();
+    const isErrorMessage = useSelector((state) => state.auth.errorMessage);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
@@ -27,6 +27,7 @@ export default function LogInPage() {
                             <input
                                 type="text"
                                 id="username"
+                                className={isErrorMessage ? 'outlineError' : '' }
                                 onChange={(e) => {
                                     setUserName(e.target.value);
                                 }}
@@ -37,12 +38,15 @@ export default function LogInPage() {
                             <input
                                 type="password"
                                 id="password"
+                                className={isErrorMessage ? 'outlineError' : '' }
                                 onChange={(e) => {
                                     setPassword(e.target.value);
                                 }}
                             />
                         </div>
-                        <ErrorMessage />
+                        {isErrorMessage && (
+                            <div className="errorMessage">{isErrorMessage}</div>
+                        )}
                         <div className="input-remember">
                             <label htmlFor="remember-me">Remember me</label>
                             <input type="checkbox" id="remember-me" />
