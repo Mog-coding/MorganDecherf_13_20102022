@@ -1,31 +1,37 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {updateNameThunk} from './../../actions/authentActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateNameThunk } from './../../actions/authentActions'
 
 export default function Profile() {
     const dispatch = useDispatch();
-    const [isEdit, setIsEdit] = useState(false);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [firstNameSaved, setFirstNameSaved] = useState('Tony');
-    const [lastNameSaved, setLastNameSaved] = useState('Jarvis');
+    const firstName = useSelector((state) => state.userData.firstName);
+    const lastName = useSelector((state) => state.userData.lastName);
 
+    const [isEdit, setIsEdit] = useState(false);
+    const [firstNameSaisie, setFirstName] = useState("");
+    const [lastNameSaisie, setLastName] = useState("");
+  
     const toggleEdit = () => {
         setIsEdit(!isEdit);
     };
+
     const saveEdit = () => {
-        setFirstNameSaved(firstName);
-        setLastNameSaved(lastName);
-        dispatch(updateNameThunk({"firstName": firstName, "lastName": lastName}))
+        dispatch(updateNameThunk({"firstName": firstNameSaisie, "lastName": lastNameSaisie}))
     };
 
+    const cancelEdit = () => {
+        setFirstName(firstName);
+        setLastName(lastName)
+        toggleEdit();
+    }
+    
     return (
         <div className="header">
             {!isEdit ? (
                 <>
                     <h1>Welcome back
                         <br />
-                        {`${firstNameSaved} ${lastNameSaved}!`}
+                        {`${firstName} ${lastName}!`}
                     </h1>
                     <button className="edit-button"
                         onClick={() => toggleEdit()}
@@ -36,12 +42,12 @@ export default function Profile() {
                     <h1>Welcome back</h1>
                     <input
                         type="text"
-                        placeholder={firstNameSaved}
+                        placeholder={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                     <input
                         type="text"
-                        placeholder={lastNameSaved}
+                        placeholder={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                     />
                     <br />
@@ -50,7 +56,7 @@ export default function Profile() {
                             toggleEdit();
                         }}
                     >Save</button>
-                    <button onClick={(e) => toggleEdit(e)}>Cancel</button>
+                    <button onClick={(e) => cancelEdit(e)}>Cancel</button>
                 </>
             )}
         </div>
