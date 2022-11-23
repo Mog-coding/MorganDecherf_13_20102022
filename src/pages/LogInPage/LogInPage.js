@@ -27,7 +27,7 @@ export default function LogInPage() {
                             <input
                                 type="text"
                                 id="username"
-                                className={isErrorMessage ? 'outlineError' : '' }
+                                className={isErrorMessage ? 'outlineError' : ''}
                                 onChange={(e) => {
                                     setUserName(e.target.value);
                                 }}
@@ -38,7 +38,7 @@ export default function LogInPage() {
                             <input
                                 type="password"
                                 id="password"
-                                className={isErrorMessage ? 'outlineError' : '' }
+                                className={isErrorMessage ? 'outlineError' : ''}
                                 onChange={(e) => {
                                     setPassword(e.target.value);
                                 }}
