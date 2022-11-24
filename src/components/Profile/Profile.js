@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateNameThunk } from './../../actions/authentActions'
+import { updateNameThunk } from './../../actions/authentActions';
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -8,34 +8,43 @@ export default function Profile() {
     const lastName = useSelector((state) => state.userData.lastName);
 
     const [isEdit, setIsEdit] = useState(false);
-    const [firstNameSaisie, setFirstName] = useState("");
-    const [lastNameSaisie, setLastName] = useState("");
-  
+    const [firstNameInput, setFirstName] = useState('');
+    const [lastNameInput, setLastName] = useState('');
+
     const toggleEdit = () => {
         setIsEdit(!isEdit);
     };
 
     const saveEdit = () => {
-        dispatch(updateNameThunk({"firstName": firstNameSaisie, "lastName": lastNameSaisie}))
+        dispatch(
+            updateNameThunk({
+                firstName: firstNameInput,
+                lastName: lastNameInput,
+            })
+        );
     };
 
     const cancelEdit = () => {
         setFirstName(firstName);
-        setLastName(lastName)
+        setLastName(lastName);
         toggleEdit();
-    }
-    
+    };
+
     return (
-        <div className="header">
+        <div className="headerProfile">
             {!isEdit ? (
                 <>
-                    <h1>Welcome back
+                    <h1>
+                        Welcome back
                         <br />
                         {`${firstName} ${lastName}!`}
                     </h1>
-                    <button className="edit-button"
+                    <button
+                        className="edit-button"
                         onClick={() => toggleEdit()}
-                    >Edit Name</button>
+                    >
+                        Edit Name
+                    </button>
                 </>
             ) : (
                 <>
@@ -51,11 +60,14 @@ export default function Profile() {
                         onChange={(e) => setLastName(e.target.value)}
                     />
                     <br />
-                    <button onClick={() => {
+                    <button
+                        onClick={() => {
                             saveEdit();
                             toggleEdit();
                         }}
-                    >Save</button>
+                    >
+                        Save
+                    </button>
                     <button onClick={(e) => cancelEdit(e)}>Cancel</button>
                 </>
             )}
