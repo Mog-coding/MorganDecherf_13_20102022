@@ -36,7 +36,7 @@ export default function LogInPage() {
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
                             <input
-                                type="password"
+                                type="text"
                                 id="password"
                                 className={isErrorMessage ? 'outlineError' : ''}
                                 onChange={(e) => {
