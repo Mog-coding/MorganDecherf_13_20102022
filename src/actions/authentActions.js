@@ -2,7 +2,6 @@ import axios from 'axios';
 
 /* login */
 export const logInThunk = (logs) => {
-
     return async (dispatch) => {
         try {
             const resp = await axios({
@@ -35,7 +34,6 @@ export const logInError = (errorMessage) => {
 
 /* profile */
 export const getProfileThunk = () => {
-
     return async (dispatch, getState) => {
         try {
             const token = getState().auth.token;
@@ -46,7 +44,7 @@ export const getProfileThunk = () => {
             });
             dispatch(getProfileSuccess(resp));
         } catch (error) {
-            dispatch(getProfileError(error.response.data.message))
+            dispatch(getProfileError(error.response.data.message));
         }
     };
 };
@@ -54,7 +52,7 @@ export const getProfileThunk = () => {
 export const getProfileSuccess = (resp) => {
     return {
         type: 'GET_PROFILE_SUCCESS',
-        payload:  resp ,
+        payload: resp,
     };
 };
 
@@ -81,7 +79,7 @@ export const updateNameThunk = (name) => {
             });
             dispatch(updateNameSuccess(resp));
         } catch (error) {
-            dispatch(updateNameError(error.response.data.message))
+            dispatch(updateNameError(error.response.data.message));
         }
     };
 };
@@ -98,4 +96,8 @@ export const updateNameError = (resp) => {
         type: 'UPDATE_NAME_ERROR',
         payload: resp,
     };
+};
+
+export const signOut = () => {
+    return { type: 'SIGN_OUT' };
 };
