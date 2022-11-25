@@ -2,7 +2,7 @@ import axios from 'axios';
 
 /* login */
 export const logInThunk = (logs) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         dispatch(logInLoading());
         try {
             const resp = await axios({
@@ -14,6 +14,14 @@ export const logInThunk = (logs) => {
                 },
             });
             dispatch(logInSuccess(resp.data.body.token));
+
+            const remember = getState().auth.remember;
+
+            if (remember) {
+                window.localStorage.setItem('token', resp.data.body.token)
+
+            }
+
             dispatch(getProfileThunk());
         } catch (error) {
             dispatch(logInError(error.response.data.message));
@@ -31,6 +39,20 @@ export const logInSuccess = (resp) => {
 
 export const logInError = (errorMessage) => {
     return { type: 'LOG_IN_ERROR', payload: errorMessage };
+};
+
+export const signOut = () => {
+    localStorage.removeItem('token')
+    return { type: 'SIGN_OUT' };
+};
+
+export const remember = () => {
+    return { type: 'REMEMBER' };
+};
+
+export const notRemember = () => {
+    //localStorage.removeItem('token')
+    return { type: 'NOT_REMEMBER' };
 };
 
 /* profile */
@@ -102,8 +124,4 @@ export const updateNameError = (resp) => {
         type: 'UPDATE_NAME_ERROR',
         payload: resp,
     };
-};
-
-export const signOut = () => {
-    return { type: 'SIGN_OUT' };
 };
