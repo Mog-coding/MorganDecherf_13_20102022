@@ -3,6 +3,7 @@ import FeatureItem from '../../components/FeatureItem/FeatureItem';
 import chatIcon from '../../assets/pictures/icon-chat.png';
 import moneyIcon from '../../assets/pictures/icon-money.png';
 import securityIcon from '../../assets/pictures/icon-security.png';
+import { Helmet } from 'react-helmet';
 
 const featureData = [
     {
@@ -51,6 +52,9 @@ export default function HomePage() {
                     })}
                 </section>
             </main>
+            <Helmet>
+                <title>Argent Bank - Home Page</title>
+            </Helmet>
         </>
     );
 }

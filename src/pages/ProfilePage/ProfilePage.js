@@ -1,6 +1,7 @@
 import Account from '../../components/Account/Account';
 import Profile from '../../components/Profile/Profile';
 import './ProfilePage.css';
+import { Helmet } from 'react-helmet';
 
 const dataAccount = [
     {
@@ -37,6 +38,9 @@ export default function ProfilePage() {
                     );
                 })}
             </main>
+            <Helmet>
+                <title>Argent Bank - Profile Page</title>
+            </Helmet>
         </>
     );
 }
