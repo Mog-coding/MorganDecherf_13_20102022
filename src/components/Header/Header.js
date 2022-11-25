@@ -7,8 +7,8 @@ import userIcon from '../../assets/icons/userIcon.svg';
 import { signOut } from '../../actions/authentActions';
 
 export default function Header() {
-    const isConnected = useSelector((state) => Boolean(state.auth.token));
-    const firstName = useSelector((state) => state.userData.firstName);
+    const isConnected = useSelector((state) => Boolean(state.authent.token));
+    const firstName = useSelector((state) => state.dataProfile.firstName);
     const dispatch = useDispatch();
 
     const signOutHandle = () => {

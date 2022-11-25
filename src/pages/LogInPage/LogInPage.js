@@ -5,8 +5,8 @@ import { logInThunk, notRemember, remember } from '../../actions/authentActions'
 
 export default function LogInPage() {
     const dispatch = useDispatch();
-    const isErrorMessage = useSelector((state) => state.auth.errorMessage);
-    const isLoadingLogin = useSelector((state) => state.auth.loadingLogin);
+    const isErrorMessage = useSelector((state) => state.authent.errorMessage);
+    const isLoadingLogin = useSelector((state) => state.authent.loadingLogin);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 

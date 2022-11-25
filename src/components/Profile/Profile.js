@@ -4,9 +4,9 @@ import { updateNameThunk } from './../../actions/authentActions';
 
 export default function Profile() {
     const dispatch = useDispatch();
-    const isLoadingName = useSelector((state) => state.userData.loadingName);
-    const firstName = useSelector((state) => state.userData.firstName);
-    const lastName = useSelector((state) => state.userData.lastName);
+    const isLoadingName = useSelector((state) => state.dataProfile.loadingName);
+    const firstName = useSelector((state) => state.dataProfile.firstName);
+    const lastName = useSelector((state) => state.dataProfile.lastName);
 
     const [isEdit, setIsEdit] = useState(false);
     const [firstNameInput, setFirstName] = useState('');

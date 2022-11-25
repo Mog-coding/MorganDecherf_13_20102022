@@ -15,7 +15,7 @@ export const logInThunk = (logs) => {
             });
             dispatch(logInSuccess(resp.data.body.token));
 
-            const remember = getState().auth.remember;
+            const remember = getState().authent.remember;
 
             if (remember) {
                 window.localStorage.setItem('token', resp.data.body.token)
@@ -59,7 +59,7 @@ export const notRemember = () => {
 export const getProfileThunk = () => {
     return async (dispatch, getState) => {
         try {
-            const token = getState().auth.token;
+            const token = getState().authent.token;
             const resp = await axios({
                 method: 'post',
                 url: 'http://localhost:3001/api/v1/user/profile',
@@ -91,7 +91,7 @@ export const updateNameThunk = (name) => {
     return async (dispatch, getState) => {
         dispatch(updateNameLoading());
         try {
-            const token = getState().auth.token;
+            const token = getState().authent.token;
             const resp = await axios({
                 method: 'put',
                 url: 'http://localhost:3001/api/v1/user/profile',
