@@ -6,11 +6,15 @@ import { logInThunk } from '../../actions/authentActions';
 export default function LogInPage() {
     const dispatch = useDispatch();
     const isErrorMessage = useSelector((state) => state.auth.errorMessage);
+    const isLoading = useSelector((state) => state.auth.loading)
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(isLoading) {
+            return
+        }
         dispatch(logInThunk({ email: userName, password: password }));
     };
 

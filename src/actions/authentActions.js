@@ -3,6 +3,7 @@ import axios from 'axios';
 /* login */
 export const logInThunk = (logs) => {
     return async (dispatch) => {
+        dispatch(logInLoading());
         try {
             const resp = await axios({
                 method: 'post',
@@ -20,9 +21,9 @@ export const logInThunk = (logs) => {
     };
 };
 
-// export const logInLoading = (respJWT) => {
-//     return { type: 'LOG_IN_LOADING' };
-// };
+export const logInLoading = (respJWT) => {
+    return { type: 'LOG_IN_LOADING' };
+};
 
 export const logInSuccess = (resp) => {
     return { type: 'LOG_IN_SUCCESS', payload: resp };
@@ -66,6 +67,7 @@ export const getProfileError = (resp) => {
 /* update name */
 export const updateNameThunk = (name) => {
     return async (dispatch, getState) => {
+        dispatch(updateNameLoading());
         try {
             const token = getState().auth.token;
             const resp = await axios({
@@ -82,6 +84,10 @@ export const updateNameThunk = (name) => {
             dispatch(updateNameError(error.response.data.message));
         }
     };
+};
+
+export const updateNameLoading = () => {
+    return { type: 'UPDATE_NAME_LOADING' };
 };
 
 export const updateNameSuccess = (resp) => {
