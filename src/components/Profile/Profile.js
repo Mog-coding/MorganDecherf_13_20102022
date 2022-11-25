@@ -4,6 +4,7 @@ import { updateNameThunk } from './../../actions/authentActions';
 
 export default function Profile() {
     const dispatch = useDispatch();
+    const isLoadingName = useSelector((state) => state.userData.loadingName);
     const firstName = useSelector((state) => state.userData.firstName);
     const lastName = useSelector((state) => state.userData.lastName);
 
@@ -16,12 +17,17 @@ export default function Profile() {
     };
 
     const saveEdit = () => {
+         // if request is already updating: stop saveEdit()
+        if(isLoadingName) {
+            return
+        }
         dispatch(
             updateNameThunk({
                 firstName: firstNameInput,
                 lastName: lastNameInput,
             })
         );
+        toggleEdit();
     };
 
     const cancelEdit = () => {
@@ -60,14 +66,7 @@ export default function Profile() {
                         onChange={(e) => setLastName(e.target.value)}
                     />
                     <br />
-                    <button
-                        onClick={() => {
-                            saveEdit();
-                            toggleEdit();
-                        }}
-                    >
-                        Save
-                    </button>
+                    <button onClick={(e) => saveEdit(e)}>Save</button>
                     <button onClick={(e) => cancelEdit(e)}>Cancel</button>
                 </>
             )}

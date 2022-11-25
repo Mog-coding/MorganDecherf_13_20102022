@@ -1,17 +1,17 @@
 const initState = {
     token: null,
-    loading: false,
+    loadingLogin: false,
     errorMessage: null,
 };
 
 export const authentReducer = (state = initState, action) => {
     switch (action.type) {
         case 'LOG_IN_LOADING':
-             return { ...state, loading: true };
+             return { ...state, loadingLogin: true };
         case 'LOG_IN_SUCCESS':
-            return { ...state, token: action.payload, loading: false, };
+            return { ...state, token: action.payload, loadingLogin: false, };
         case 'LOG_IN_ERROR':
-            return { ...state, errorMessage: action.payload, loading: false, };
+            return { ...state, errorMessage: action.payload, loadingLogin: false, };
         case 'SIGN_OUT':
             return { ...state, token: null };
         default:
