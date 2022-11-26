@@ -1,0 +1,23 @@
+.contSaveButtons {
+    display: flex;
+    justify-content:center;
+    margin-top: 10px;
+}
+
+.saveButton {
+    margin-right: 15px;
+}
+
+.inputEdit {
+    height: 30px;
+    font-size: 1.5em;
+    width: 180px;
+ }
+
+.inputEdit::placeholder {
+    font-size: 0.8em;
+}
+
+.inputEditFirstname {
+    margin-right: 15px;
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateNameThunk } from './../../actions/authentActions';
+import './Profile.css';
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -17,9 +18,9 @@ export default function Profile() {
     };
 
     const saveEdit = () => {
-         // if request is already updating: stop saveEdit()
-        if(isLoadingName) {
-            return
+        // if request is already updating: stop saveEdit()
+        if (isLoadingName) {
+            return;
         }
         dispatch(
             updateNameThunk({
@@ -56,18 +57,31 @@ export default function Profile() {
                 <>
                     <h1>Welcome back</h1>
                     <input
+                        className="inputEdit inputEditFirstname"
                         type="text"
                         placeholder={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                     <input
+                        className="inputEdit"
                         type="text"
                         placeholder={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                     />
-                    <br />
-                    <button onClick={(e) => saveEdit(e)}>Save</button>
-                    <button onClick={(e) => cancelEdit(e)}>Cancel</button>
+                    <div className="contSaveButtons">
+                        <button
+                            className="edit-button saveButton"
+                            onClick={(e) => saveEdit(e)}
+                        >
+                            Save
+                        </button>
+                        <button
+                            className="edit-button"
+                            onClick={(e) => cancelEdit(e)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </>
             )}
         </div>
