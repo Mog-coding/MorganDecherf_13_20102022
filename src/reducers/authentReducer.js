@@ -10,7 +10,7 @@ export const authentReducer = (state = initState, action) => {
         case 'LOG_IN_LOADING':
             return { ...state, loadingLogin: true };
         case 'LOG_IN_SUCCESS':
-            return { ...state, token: action.payload, loadingLogin: false, };
+            return { ...state, token: action.payload, errorMessage: null, loadingLogin: false, };
         case 'LOG_IN_ERROR':
             return { ...state, errorMessage: action.payload, loadingLogin: false, };
         case 'SIGN_OUT':
