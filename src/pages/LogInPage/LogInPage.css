@@ -52,6 +52,10 @@
     color: #fff;
 }
 
+.sign-in-button:hover {
+    cursor: pointer;
+}
+
 .errorMessage {
     color: #c70707;
     text-align: left;
