@@ -4,6 +4,7 @@ import axios from 'axios';
 export const logInThunk = (logs) => {
     return async (dispatch, getState) => {
         dispatch(logInLoading());
+
         try {
             const resp = await axios({
                 method: 'post',
@@ -18,8 +19,7 @@ export const logInThunk = (logs) => {
             const remember = getState().authent.remember;
 
             if (remember) {
-                window.localStorage.setItem('token', resp.data.body.token)
-
+                window.localStorage.setItem('token', resp.data.body.token);
             }
 
             dispatch(getProfileThunk());
@@ -42,7 +42,6 @@ export const logInError = (errorMessage) => {
 };
 
 export const signOut = () => {
-    localStorage.removeItem('token')
     return { type: 'SIGN_OUT' };
 };
 
@@ -51,7 +50,6 @@ export const remember = () => {
 };
 
 export const notRemember = () => {
-    //localStorage.removeItem('token')
     return { type: 'NOT_REMEMBER' };
 };
 
@@ -65,6 +63,7 @@ export const getProfileThunk = () => {
                 url: 'http://localhost:3001/api/v1/user/profile',
                 headers: { Authorization: `Bearer ${token}` },
             });
+            console.log('requete profile', resp);
             dispatch(getProfileSuccess(resp));
         } catch (error) {
             dispatch(getProfileError(error.response.data.message));

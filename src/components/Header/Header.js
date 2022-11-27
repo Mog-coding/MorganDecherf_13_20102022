@@ -4,15 +4,31 @@ import argentBankLogo from '../../assets/pictures/argentBankLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import signOutIcon from '../../assets/icons/signOut.svg';
 import userIcon from '../../assets/icons/userIcon.svg';
-import { signOut } from '../../actions/authentActions';
+import { getProfileThunk, logInSuccess, signOut,} from '../../actions/authentActions';
+import { useEffect } from 'react';
 
 export default function Header() {
     const isConnected = useSelector((state) => Boolean(state.authent.token));
     const firstName = useSelector((state) => state.dataProfile.firstName);
+    const remember = useSelector((state) => state.authent.remember);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!isConnected && Boolean(window.localStorage.getItem('token'))) {
+            console.log('localstorage', window.localStorage.getItem('token'));
+            console.log('reconnexion a faire');
+            dispatch(logInSuccess(window.localStorage.getItem('token')));
+            dispatch(getProfileThunk());
+        }
+    }, [isConnected, remember, dispatch]);
 
     const signOutHandle = () => {
         dispatch(signOut());
+        window.localStorage.clear();
+        console.log(
+            'localStorage token apres signout:',
+            localStorage.getItem('token')
+        );
     };
 
     return (
