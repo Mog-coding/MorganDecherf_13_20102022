@@ -1,1 +1,3 @@
-export const isConnected = (state) => Boolean(state.authent.token);
+import { isTokenValid } from "../utils/isTokenValid";
+
+export const isConnected = (state) => isTokenValid(state.authent.token);
