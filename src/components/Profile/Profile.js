@@ -10,30 +10,30 @@ export default function Profile() {
     const lastName = useSelector((state) => state.dataProfile.lastName);
 
     const [isEdit, setIsEdit] = useState(false);
-    const [firstNameInput, setFirstName] = useState('');
-    const [lastNameInput, setLastName] = useState('');
+    const [firstNameInput, setFirstNameInput] = useState('');
+    const [lastNameInput, setLastNameInput] = useState('');
 
     const toggleEdit = () => {
         setIsEdit(!isEdit);
     };
 
     const saveEdit = () => {
-        // if request is already updating: stop saveEdit()
         if (isLoadingName) {
             return;
         }
+        // if input empty: store firstName in redux otherwise store input
         dispatch(
             updateNameThunk({
-                firstName: firstNameInput,
-                lastName: lastNameInput,
+                firstName: !firstNameInput ? firstName : firstNameInput,
+                lastName: !lastNameInput ? lastName : lastNameInput,
             })
         );
         toggleEdit();
     };
 
     const cancelEdit = () => {
-        setFirstName(firstName);
-        setLastName(lastName);
+        setFirstNameInput(firstName);
+        setLastNameInput(lastName);
         toggleEdit();
     };
 
@@ -60,13 +60,13 @@ export default function Profile() {
                         className="inputEdit inputEditFirstname"
                         type="text"
                         placeholder={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                        onChange={(e) => setFirstNameInput(e.target.value)}
                     />
                     <input
                         className="inputEdit"
                         type="text"
                         placeholder={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        onChange={(e) => setLastNameInput(e.target.value)}
                     />
                     <div className="contSaveButtons">
                         <button
