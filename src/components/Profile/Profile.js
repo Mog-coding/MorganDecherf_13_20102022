@@ -4,6 +4,9 @@ import { selectFirstName, selectLastName, selectLoadingName,  } from '../../sele
 import { updateNameThunk } from './../../actions/authentActions';
 import './Profile.css';
 
+/**
+ * @description component that displays and handles user's name with buttons edit, save, cancel
+ */
 export default function Profile() {
     const dispatch = useDispatch();
     const isLoadingName = useSelector(selectLoadingName);

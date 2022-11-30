@@ -8,12 +8,16 @@ import { getProfileThunk, logInSuccess, signOut } from '../../actions/authentAct
 import { useEffect } from 'react';
 import { selectConnected, selectFirstName } from '../../selectors/authentSelectors';
 
+/**
+ * @description component that allows to navigate to LoginPage or HomePage or ProfilePage(only if user is connected)
+ */
 export default function Header() {
     const isConnected = useSelector(selectConnected);
     const firstName = useSelector(selectFirstName);
 
     const dispatch = useDispatch();
 
+    // useEffect detects if the page is refreshed and user is connected -> store localStorage's token inside redux
     useEffect(() => {
         if (!isConnected && Boolean(window.localStorage.getItem('token'))) {
             dispatch(logInSuccess(window.localStorage.getItem('token')));

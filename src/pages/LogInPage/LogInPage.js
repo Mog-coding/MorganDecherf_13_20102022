@@ -5,6 +5,9 @@ import { logInThunk } from '../../actions/authentActions';
 import { Helmet } from 'react-helmet';
 import { selectErrorMessage, selectLoadingLogin } from '../../selectors/authentSelectors';
 
+/**
+ * @description component page that contains form and allows user to signIn and check remember
+ */
 export default function LogInPage() {
     const dispatch = useDispatch();
     const isErrorMessage = useSelector(selectErrorMessage);

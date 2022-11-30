@@ -1,5 +1,9 @@
 import './FeatureItem.css';
+import PropTypes from 'prop-types';
 
+/**
+ * @description component that shows Argent Bank's slogans
+ */
 export default function FeatureItem({ featureTitle, featureText, featureIcon }) {
     return (
         <>
@@ -15,3 +19,9 @@ export default function FeatureItem({ featureTitle, featureText, featureIcon }) 
         </>
     )
 }
+
+FeatureItem.propTypes = {
+    featureTitle: PropTypes.string.isRequired,
+    featureText: PropTypes.string.isRequired,
+    featureIcon: PropTypes.string.isRequired,
+};

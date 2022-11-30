@@ -23,6 +23,9 @@ const featureData = [
     },
 ];
 
+/**
+ * @description component page Argent Bank's slogan and allows user to navigate to LogInPage
+ */
 export default function HomePage() {
     return (
         <>

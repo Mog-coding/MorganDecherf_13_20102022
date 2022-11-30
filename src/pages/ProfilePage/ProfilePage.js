@@ -21,6 +21,9 @@ const dataAccount = [
     },
 ];
 
+/**
+ * @description component page that displays connected user's name and allows them to edit it 
+ */
 export default function ProfilePage() {
     return (
         <>

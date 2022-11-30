@@ -1,6 +1,10 @@
 import './Account.css';
 import TransactionButton from '../transactionButton/TransactionButton';
+import PropTypes from 'prop-types';
 
+/**
+ * @description component that shows account's balance
+ */
 export default function Account({ title, amount, description }) {
     return (
         <section className="account">
@@ -13,3 +17,9 @@ export default function Account({ title, amount, description }) {
         </section>
     );
 }
+
+Account.propTypes = {
+    title: PropTypes.string.isRequired,
+    amount: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+};
