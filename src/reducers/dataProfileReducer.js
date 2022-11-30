@@ -13,17 +13,21 @@ export const dataProfileReducer = (state = initState, action) => {
         case 'UPDATE_NAME_SUCCESS':
             return {
                 ...state,
-                firstName: action.payload.data.body.firstName,
-                lastName: action.payload.data.body.lastName,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
                 loadingName: false,
             };
         case 'UPDATE_NAME_ERROR':
-            return { ...state, errorUpdate: action.payload, loadingName: false };
+            return {
+                ...state,
+                errorUpdate: action.payload,
+                loadingName: false,
+            };
         case 'GET_PROFILE_SUCCESS':
             return {
                 ...state,
-                firstName: action.payload.data.body.firstName,
-                lastName: action.payload.data.body.lastName,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
             };
         case 'GET_PROFILE_ERROR':
             return {

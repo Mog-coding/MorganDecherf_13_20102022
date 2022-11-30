@@ -24,6 +24,7 @@ export const logInThunk = (logs) => {
 
             dispatch(getProfileThunk());
         } catch (error) {
+            console.error(error);
             dispatch(logInError(error.response.data.message));
         }
     };
@@ -64,8 +65,14 @@ export const getProfileThunk = () => {
                 headers: { Authorization: `Bearer ${token}` },
             });
             console.log('requete profile', resp);
-            dispatch(getProfileSuccess(resp));
+            dispatch(
+                getProfileSuccess({
+                    firstName: resp.data.body.firstName,
+                    lastName: resp.data.body.lastName,
+                })
+            );
         } catch (error) {
+            console.error(error);
             dispatch(getProfileError(error.response.data.message));
         }
     };
@@ -100,8 +107,15 @@ export const updateNameThunk = (name) => {
                     lastName: name.lastName,
                 },
             });
-            dispatch(updateNameSuccess(resp));
+
+            dispatch(
+                updateNameSuccess({
+                    firstName: resp.data.body.firstName,
+                    lastName: resp.data.body.lastName,
+                })
+            );
         } catch (error) {
+            console.error(error);
             dispatch(updateNameError(error.response.data.message));
         }
     };
