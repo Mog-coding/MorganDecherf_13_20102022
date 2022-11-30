@@ -3,11 +3,12 @@ import './LogInPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logInThunk } from '../../actions/authentActions';
 import { Helmet } from 'react-helmet';
+import { selectErrorMessage, selectLoadingLogin } from '../../selectors/authentSelectors';
 
 export default function LogInPage() {
     const dispatch = useDispatch();
-    const isErrorMessage = useSelector((state) => state.authent.errorMessage);
-    const isLoadingLogin = useSelector((state) => state.authent.loadingLogin);
+    const isErrorMessage = useSelector(selectErrorMessage);
+    const isLoadingLogin = useSelector(selectLoadingLogin);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);

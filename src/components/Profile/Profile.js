@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectFirstName, selectLastName, selectLoadingName,  } from '../../selectors/authentSelectors';
 import { updateNameThunk } from './../../actions/authentActions';
 import './Profile.css';
 
 export default function Profile() {
     const dispatch = useDispatch();
-    const isLoadingName = useSelector((state) => state.dataProfile.loadingName);
-    const firstName = useSelector((state) => state.dataProfile.firstName);
-    const lastName = useSelector((state) => state.dataProfile.lastName);
-    const remember = useSelector((state) => state.authent.remember);
+    const isLoadingName = useSelector(selectLoadingName);
+    const firstName = useSelector(selectFirstName);
+    const lastName = useSelector(selectLastName);
 
     const [isEdit, setIsEdit] = useState(false);
     const [firstNameInput, setFirstNameInput] = useState('');
     const [lastNameInput, setLastNameInput] = useState('');
-
-    console.log('remember', remember)
 
     const toggleEdit = () => {
         setIsEdit(!isEdit);

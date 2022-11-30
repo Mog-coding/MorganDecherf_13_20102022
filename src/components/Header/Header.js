@@ -6,14 +6,12 @@ import signOutIcon from '../../assets/icons/signOut.svg';
 import userIcon from '../../assets/icons/userIcon.svg';
 import { getProfileThunk, logInSuccess, signOut } from '../../actions/authentActions';
 import { useEffect } from 'react';
-import { isTokenValid } from '../../utils/isTokenValid';
+import { selectConnected, selectFirstName } from '../../selectors/authentSelectors';
 
 export default function Header() {
-    const isConnected = useSelector((state) =>
-        isTokenValid(state.authent.token)
-    );
-    const firstName = useSelector((state) => state.dataProfile.firstName);
-    // const remember = useSelector((state) => state.authent.remember);
+    const isConnected = useSelector(selectConnected);
+    const firstName = useSelector(selectFirstName);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
