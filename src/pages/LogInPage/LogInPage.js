@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import './LogInPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    logInThunk,
-    notRemember,
-    remember,
-} from '../../actions/authentActions';
+import { logInThunk } from '../../actions/authentActions';
 import { Helmet } from 'react-helmet';
 
 export default function LogInPage() {
@@ -14,6 +10,7 @@ export default function LogInPage() {
     const isLoadingLogin = useSelector((state) => state.authent.loadingLogin);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [remember, setRemember] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,15 +18,11 @@ export default function LogInPage() {
         if (isLoadingLogin) {
             return;
         }
-        dispatch(logInThunk({ email: userName, password: password }));
+        dispatch(logInThunk({ email: userName, password: password }, remember));
     };
 
-    const handleCheck = (checked) => {
-        if (checked) {
-            dispatch(remember());
-        } else {
-            dispatch(notRemember());
-        }
+    const handleCheck = () => {
+        setRemember(!remember);
     };
 
     return (

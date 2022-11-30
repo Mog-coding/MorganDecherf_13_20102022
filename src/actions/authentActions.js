@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /* login */
-export const logInThunk = (logs) => {
+export const logInThunk = (logs, remember) => {
     return async (dispatch, getState) => {
         dispatch(logInLoading());
 
@@ -14,9 +14,7 @@ export const logInThunk = (logs) => {
                     password: logs.password,
                 },
             });
-            dispatch(logInSuccess(resp.data.body.token));
-
-            const remember = getState().authent.remember;
+            dispatch(logInSuccess(resp.data.body.token, remember));
 
             if (remember) {
                 window.localStorage.setItem('token', resp.data.body.token);
@@ -34,8 +32,8 @@ export const logInLoading = (respJWT) => {
     return { type: 'LOG_IN_LOADING' };
 };
 
-export const logInSuccess = (resp) => {
-    return { type: 'LOG_IN_SUCCESS', payload: resp };
+export const logInSuccess = (resp, remember) => {
+    return { type: 'LOG_IN_SUCCESS', payload: resp, rememb: remember };
 };
 
 export const logInError = (errorMessage) => {
@@ -44,14 +42,6 @@ export const logInError = (errorMessage) => {
 
 export const signOut = () => {
     return { type: 'SIGN_OUT' };
-};
-
-export const remember = () => {
-    return { type: 'REMEMBER' };
-};
-
-export const notRemember = () => {
-    return { type: 'NOT_REMEMBER' };
 };
 
 /* profile */

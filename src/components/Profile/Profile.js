@@ -8,10 +8,13 @@ export default function Profile() {
     const isLoadingName = useSelector((state) => state.dataProfile.loadingName);
     const firstName = useSelector((state) => state.dataProfile.firstName);
     const lastName = useSelector((state) => state.dataProfile.lastName);
+    const remember = useSelector((state) => state.authent.remember);
 
     const [isEdit, setIsEdit] = useState(false);
     const [firstNameInput, setFirstNameInput] = useState('');
     const [lastNameInput, setLastNameInput] = useState('');
+
+    console.log('remember', remember)
 
     const toggleEdit = () => {
         setIsEdit(!isEdit);
