@@ -24,7 +24,7 @@ root.render(
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/sign" element={
+                <Route path="/login" element={
                     <PublicRoute>
                         <LogInPage />
                     </PublicRoute>} />

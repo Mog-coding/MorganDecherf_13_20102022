@@ -53,7 +53,7 @@ export default function Header() {
                         </div>
                     </div>
                 ) : (
-                    <Link className="main-nav-login linkHandle" to="/sign">
+                    <Link className="main-nav-login linkHandle" to="/login">
                         <i className="fa fa-user-circle"></i>
                         Sign In
                     </Link>
