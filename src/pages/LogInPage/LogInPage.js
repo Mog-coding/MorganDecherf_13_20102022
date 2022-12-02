@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './LogInPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { logInThunk } from '../../actions/authentActions';
+import { logInThunk } from '../../actions/actions';
 import { Helmet } from 'react-helmet';
 import { selectErrorMessage, selectLoadingLogin } from '../../selectors/authentSelectors';
 

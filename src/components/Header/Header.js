@@ -4,7 +4,7 @@ import argentBankLogo from '../../assets/pictures/argentBankLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import signOutIcon from '../../assets/icons/signOut.svg';
 import userIcon from '../../assets/icons/userIcon.svg';
-import { getProfileThunk, logInSuccess, signOut } from '../../actions/authentActions';
+import { getProfileThunk, logInSuccess, signOut } from '../../actions/actions';
 import { useEffect } from 'react';
 import { selectConnected, selectFirstName } from '../../selectors/authentSelectors';
 

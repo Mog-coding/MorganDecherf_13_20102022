@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-/* login */
+/**
+ * @description logIn Thunk, perform axios request with logs
+ * @param { Object } logs 
+ * @param { Boolean } remember 
+ */
 export const logInThunk = (logs, remember) => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         dispatch(logInLoading());
 
         try {
@@ -28,7 +32,7 @@ export const logInThunk = (logs, remember) => {
     };
 };
 
-export const logInLoading = (respJWT) => {
+export const logInLoading = () => {
     return { type: 'LOG_IN_LOADING' };
 };
 
@@ -44,7 +48,9 @@ export const signOut = () => {
     return { type: 'SIGN_OUT' };
 };
 
-/* profile */
+/**
+ * @description retrieve user's firstName and lastName with axios request containing user's token 
+ */
 export const getProfileThunk = () => {
     return async (dispatch, getState) => {
         try {
@@ -54,7 +60,7 @@ export const getProfileThunk = () => {
                 url: 'http://localhost:3001/api/v1/user/profile',
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log('requete profile', resp);
+
             dispatch(
                 getProfileSuccess({
                     firstName: resp.data.body.firstName,
@@ -82,7 +88,10 @@ export const getProfileError = (resp) => {
     };
 };
 
-/* update name */
+/**
+ * @description update user's firstName and lastName with axios request containing user's token 
+ * @param { Object } name 
+ */
 export const updateNameThunk = (name) => {
     return async (dispatch, getState) => {
         dispatch(updateNameLoading());

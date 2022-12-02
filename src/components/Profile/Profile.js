@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFirstName, selectLastName, selectLoadingName,  } from '../../selectors/authentSelectors';
-import { updateNameThunk } from './../../actions/authentActions';
+import { updateNameThunk } from './../../actions/actions';
 import './Profile.css';
 
 /**
