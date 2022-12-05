@@ -117,29 +117,30 @@ paths:
 
           
           
-  /{account}/transactions:
+  /transactions:
     get:
       tags:
         - Transactions Module
       summary: Monthly Transactions
       description: API for fetching user's transactions for the current month
       parameters:
-        - name: account
-          in: path
-          description: user account
-          required: true
-          type: integer
         - in: header
           type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
-        - in: body
-          name: body
-          description: transactions/ID Payload
-          required: true
-          schema:
-            $ref: '#/definitions/Transactions'
+        - in: query
+          type: string
+          format: date
+          name: start date
+          description: start date
+          required: false
+        - in: query
+          type: string
+          format: date
+          name: end date
+          description: end date
+          required: false  
       produces:
         - application/json
       responses:
@@ -151,21 +152,16 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /{account}/transaction/{ID}:
+  /transactions/{ID}:
     get:
       tags:
         - Transactions Module
-      summary: TransactionID informations
+      summary: Transaction ID informations
       description: API for fetching user's transaction ID informations
       parameters:
-        - name: account
-          in: path
-          description: user account
-          required: true
-          type: integer
         - name: ID
           in: path
-          description: transactionID
+          description: transaction ID
           required: true
           type: string
         - in: header
@@ -173,12 +169,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
-        - in: body
-          name: body
-          description: transactions/ID Payload
-          required: true
-          schema:
-            $ref: '#/definitions/TransactionId'
+
     
       produces:
         - application/json
@@ -191,22 +182,17 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-    put:
+    patch:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: TransactionID informations
+      summary: Transaction ID informations
       description: API for updating user's transaction ID informations
       parameters:
-        - name: account
-          in: path
-          description: user account
-          required: true
-          type: integer
         - name: ID
           in: path
-          description: transactionID
+          description: transaction ID
           required: true
           type: string
         - in: header
@@ -291,15 +277,6 @@ definitions:
         
         
         
-  Transactions:
-    type: object
-    properties:
-      account:
-        type: integer
-      date:
-        type: string
-        format: date
-        
   TransactionsResponse:
     type: object
     properties:
@@ -312,8 +289,6 @@ definitions:
         items:
           type: object
           properties:
-              account:
-                type: integer
               date:
                 type: string
                 format: date
@@ -322,22 +297,18 @@ definitions:
               amount: 
                 type: number
               balance:
-                type: number      
+                type: number  
+              transactionID:
+                type: string
+              category:
+                type: string
+              notes: 
+                type: string    
   
   
-  TransactionId:
-    type: object
-    properties:
-      account:
-        type: integer
-      transactionID:
-        type: string
-        
   TransactionIdUpdate:
     type: object
     properties:
-      account:
-        type: integer
       transactionID:
         type: string
       category:
@@ -355,8 +326,6 @@ definitions:
       body:
         type: object
         properties:
-            account:
-              type: integer
             transactionID:
               type: string
             transaction_type:
@@ -365,5 +334,3 @@ definitions:
               type: string
             notes: 
               type: string
-       
-
