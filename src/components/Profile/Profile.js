@@ -25,7 +25,7 @@ export default function Profile() {
         if (isLoadingName) {
             return;
         }
-        // if input empty: store firstName in redux otherwise store input
+        // if input empty: store firstName in database otherwise store input
         dispatch(
             updateNameThunk({
                 firstName: !firstNameInput ? firstName : firstNameInput,
