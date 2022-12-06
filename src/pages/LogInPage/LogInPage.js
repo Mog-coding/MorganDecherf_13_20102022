@@ -22,7 +22,7 @@ export default function LogInPage() {
         if (isLoadingLogin) {
             return;
         }
-        dispatch(logInThunk({ email: userName, password: password }, remember));
+        dispatch(logInThunk({ email: userName, password: password, remember: remember }));
     };
 
     const handleCheck = () => {

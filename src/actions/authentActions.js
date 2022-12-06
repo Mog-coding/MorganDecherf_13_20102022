@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { getProfileThunk } from './dataProfileActions';
 
-
 /**
  * @description logIn Thunk, perform axios request with logs
  * @param { Object } logs 
  * @param { Boolean } remember 
  */
-export const logInThunk = (logs, remember) => {
+export const logInThunk = (logs) => {
     return async (dispatch) => {
         dispatch(logInLoading());
 
@@ -20,9 +19,9 @@ export const logInThunk = (logs, remember) => {
                     password: logs.password,
                 },
             });
-            dispatch(logInSuccess(resp.data.body.token, remember));
+            dispatch(logInSuccess(resp.data.body.token, logs.remember));
 
-            if (remember) {
+            if (logs.remember) {
                 window.localStorage.setItem('token', resp.data.body.token);
             }
 
@@ -39,7 +38,7 @@ export const logInLoading = () => {
 };
 
 export const logInSuccess = (resp, remember) => {
-    return { type: 'LOG_IN_SUCCESS', payload: resp, rememb: remember };
+    return { type: 'LOG_IN_SUCCESS', payload: resp, remember: remember };
 };
 
 export const logInError = (errorMessage) => {

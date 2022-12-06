@@ -15,7 +15,7 @@ export const authentReducer = (state = initState, action) => {
                 token: action.payload,
                 errorMessage: null,
                 loadingLogin: false,
-                remember: action.rememb,
+                remember: action.remember,
             };
         case 'LOG_IN_ERROR':
             return {
