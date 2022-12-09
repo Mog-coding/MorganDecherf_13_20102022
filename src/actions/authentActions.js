@@ -37,8 +37,8 @@ export const logInLoading = () => {
     return { type: 'LOG_IN_LOADING' };
 };
 
-export const logInSuccess = (resp, remember) => {
-    return { type: 'LOG_IN_SUCCESS', payload: resp, remember: remember };
+export const logInSuccess = (token, remember) => {
+    return { type: 'LOG_IN_SUCCESS', payload: token, remember: remember };
 };
 
 export const logInError = (errorMessage) => {
